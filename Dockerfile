@@ -46,6 +46,8 @@ RUN apt-get update && apt-get install -y wget gnupg lsb-release && \
 # Set the working directory
 WORKDIR /workspace
 
+RUN pip install torch torchvision torchaudio
+
 # Install any project-specific dependencies here
 COPY requirements.txt .
 RUN pip install -r requirements.txt
