@@ -13,5 +13,5 @@ docker build -t vlm-od .
 ```
 4. Run the docker container with the following command:
 ```bash
-docker run --name vlm_od -it --gpus all -v /path/to/datastore:/path/to/datastore -v `pwd`:/workspace --shm-size=16g --network fiftyone_network -e FIFTYONE_DATABASE_URI=mongodb://fiftyone:27017 vlm-od 
+docker run --name vlm_od -it --gpus all -v /path/to/datastore:/path/to/datastore -v `pwd`:/workspace --shm-size=16g --network fiftyone_network -e FIFTYONE_DATABASE_URI=mongodb://fiftyone_server:27017 vlm-od 
 ```
