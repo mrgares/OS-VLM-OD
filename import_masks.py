@@ -1,24 +1,14 @@
-# import fiftyone as fo
-# from tqdm import tqdm
-
-# dataset = fo.load_dataset("nuscenes")
-# dataset_imported = fo.load_dataset("imported_nuscenes")
-
-# # set pseudo_masks field from dataset_imported to dataset based on the "sample_token" field
-# for sample in tqdm(dataset_imported, desc="Importing masks...", unit=" samples"):
-#     sample_token = sample["sample_token"]
-#     sample_to_update = dataset.match({"sample_token":sample_token}).first()
-#     sample_to_update["pseudo_masks"] = sample["pseudo_masks"]
-#     sample_to_update.save()
-#     print("Sample updated: %s" % sample_token)
-#     break
-
 import fiftyone as fo
 from tqdm import tqdm
 
 # Load datasets
 dataset = fo.load_dataset("nuscenes")
 dataset_imported = fo.load_dataset("imported_nuscenes")
+
+#['CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_FRONT_RIGHT', 'CAM_BACK_LEFT', 'CAM_BACK', 'CAM_BACK_RIGHT']
+slice_name = "CAM_BACK_RIGHT"
+dataset = dataset.select_group_slices(slice_name)
+dataset_imported = dataset_imported.select_group_slices(slice_name)
 
 print("Creating dictionary of pseudo masks...")
 # Step 1: Create a dictionary with sample_token as key and pseudo_masks as value from dataset_imported
